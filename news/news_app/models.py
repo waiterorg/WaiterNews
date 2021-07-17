@@ -25,6 +25,9 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+class IPAddress(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name="آدرس آی پی")    
+
 
 class ArticleManager(models.Manager):
 
@@ -54,6 +57,7 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True,verbose_name='ساخته شده')
     updated = models.DateTimeField(auto_now=True,verbose_name='بروز رسانی شده')
     status = models.CharField(max_length= 1,choices=STATUS_CHOICES,verbose_name='وضعیت')
+    hits = models.ManyToManyField(IPAddress, through="ArticleHit", blank=True, related_name="hits", verbose_name="بازدید ها")
     objects = ArticleManager()
     class Meta:
          verbose_name = 'مقاله'
@@ -69,3 +73,8 @@ class Article(models.Model):
     def thumpnail_tag(self):
         return format_html("<img src='{}' width=95 height=75 style='border-radius: 5px;'>".format(self.thumpnail.url))
     thumpnail_tag.short_description = 'عکس مقاله'
+
+class ArticleHit(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    ip_address = models.ForeignKey(IPAddress, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)

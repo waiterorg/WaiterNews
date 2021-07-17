@@ -1,6 +1,9 @@
 from django.shortcuts import render
-
+from .models import Article
+from django.views.generic.list import ListView
 # Create your views here.
 
-def test(request):
-    return render(request,'news/news_list.html',{})
+class ArticleListView(ListView):
+    model = Article
+    queryset = Article.objects.get_published_article()
+    paginate_by = 4
