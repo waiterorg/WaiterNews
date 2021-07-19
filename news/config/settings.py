@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',
+
 ]
 
 MIDDLEWARE = [
