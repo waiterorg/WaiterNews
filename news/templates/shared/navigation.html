@@ -19,15 +19,15 @@
                                 <div class="container">
                                     <div class="mega-menu-content clearfix">
                                         <div class="tab">                                        
-                                            {% for category in categories|slice:":5" %}
+                                            {% for category in categories|slice:":10" %}
                                             <button class="tablinks" onclick="openCategory(event, '{{category.slug}}')">{{category.title}}</button>                                          
                                             {% endfor %}
                                         </div>
                                         <div class="tab-details clearfix">
-                                            {% for category in categories %}                                    
+                                            {% for category in categories|slice:":10" %}                                    
                                             <div id="{{category.slug}}" class="tabcontent active">
                                                 <div class="row">
-                                                    {% for article in category.articles.get_published_article %}
+                                                    {% for article in category.articles.get_published_article|slice:":5" %}
                                                     
                                                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                                         <div class="blog-box">
