@@ -773,7 +773,7 @@ div.tab button:hover {
     display: block;
     font-size: 14px;
     line-height: 1;
-    margin-left: 6px;
+    margin-right: 6px;
     padding: 0.8rem 0.8rem;
     position: relative;
     text-transform: capitalize;
@@ -1029,7 +1029,7 @@ div.tab button:hover {
 .small-title {
     background: #edeff2 none repeat scroll 0 0;
     font-size: 16px;
-    left: 5%;
+    right: 5%;
     line-height: 1;
     margin: 0;
     padding: 0.6rem 1.5rem;

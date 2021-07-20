@@ -1,5 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load humanize %}
+
 {% block slide %}
     <div class="masonry-blog clearfix">
     <div class="first-slot">
@@ -56,7 +58,7 @@
     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="page-wrapper">
                             <div class="blog-top clearfix">
-                                <h4 class="pull-left">Recent News <a href="#"><i class="fa fa-rss"></i></a></h4>
+                                <h4 class="pull-right"><i class="fa fa-rss"></i> جدیدترین اخبار </h4>
                             </div><!-- end blog-top -->
 
                             <div class="blog-list clearfix">
@@ -64,7 +66,7 @@
                                     <div class="blog-box row">
                                         <div class="col-md-4">
                                             <div class="post-media">
-                                                <a href="tech-single.html" title="">
+                                                <a href="{% url 'news:articledetail' article.slug %}" title="">
                                                     <img src="{{article.thumpnail.url}}" alt="" class="img-fluid">
                                                     <div class="hovereffect"></div>
                                                 </a>
@@ -72,14 +74,14 @@
                                         </div><!-- end col -->
 
                                         <div class="blog-meta big-meta col-md-8">
-                                            <h4><a href="tech-single.html" title="">{{article.title}}</a></h4>
+                                            <h4><a href="{% url 'news:articledetail' article.slug %}" title="">{{article.title}}</a></h4>
                                             <p>{{article.description|striptags|truncatewords:60}}</p>
                                             {% for category in article.category.get_active_category %}
-                                            <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">{{category}}</a></small>                                              
+                                            <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title=""> {{category}}</a></small>                                              
                                             {% endfor %}
-                                            <small><a href="tech-single.html" title="">{{article.publish}}</a></small>
-                                            <small><a href="tech-author.html" title="">{{article.author}}</a></small>
-                                            <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i> {{article.hits.count}}</a></small>
+                                            <small>{{article.publish|naturaltime}}</small>
+                                            <small> نویسنده {{article.author}}</small>
+                                            <small><i class="fa fa-eye"></i>  {{article.hits.count}}</small>
                                         </div><!-- end meta -->
                                     </div><!-- end blog-box -->
 
