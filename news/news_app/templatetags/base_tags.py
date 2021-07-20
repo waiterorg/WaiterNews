@@ -8,5 +8,4 @@ register = template.Library()
 def category_navbar():
     return {
         "categories": Category.objects.get_active_category(),
-        "articles": Article.objects.get_published_article()
     }
