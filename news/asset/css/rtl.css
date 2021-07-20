@@ -19,3 +19,10 @@ ul.navbar-nav.mr-auto{
     padding: 1rem 1.5rem 1rem;
 }
 
+div.tab {
+    float: right;
+    padding: 2rem 0;
+    border-right: 1px solid #e1e3e6;
+    width: 20%;
+    background-color: #edeff2;
+}

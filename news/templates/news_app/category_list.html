@@ -1,0 +1,28 @@
+{% extends 'shared/list.html' %}
+
+{% block title %}
+   دسته بندی  {{ category.title }}
+{% endblock title %}
+
+
+
+{% block previous_page_url %}
+    {% url 'news:CategoryView' category.slug page_obj.previous_page_number %}
+{% endblock %}
+
+
+
+{% block active_page %}
+    {% url 'news:CategoryView' category.slug page %}
+{% endblock %}
+
+
+
+{% block unactive_page %}
+    {% url 'news:CategoryView' category.slug page %}
+{% endblock %}
+
+
+{% block next_page_url %}
+    {% url 'news:CategoryView' category.slug page_obj.next_page_number %}
+{% endblock %}
