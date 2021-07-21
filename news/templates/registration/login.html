@@ -21,11 +21,13 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static "registration/login/css/util.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "registration/login/css/main.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "registration/login/css/rtl.css" %}">
+
 <!--===============================================================================================-->
 </head>
 <body>
 	{% if form.non_field_errors %}
-	<div class="errors" >
+	<div class="errors rtl" >
 		{% for error in form.non_field_errors %}
 			<span>{{error}}</span>
 		{% endfor %}
