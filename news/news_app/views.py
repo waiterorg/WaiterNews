@@ -37,6 +37,3 @@ class CategoryList(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = category
         return context
-
-def login(request):
-    return render(request,'registration/login.html',{})
