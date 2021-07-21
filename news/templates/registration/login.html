@@ -46,7 +46,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						{{form.username|add_class:"input100"}}
+						{% render_field form.username class="input100" placeholder=form.username.label %}
 						{% if form.username.errors %}
 								<div class="errorfield" >
 									{% for error in form.username.errors %}
@@ -61,7 +61,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						{{form.password|add_class:"input100"}}
+						{% render_field form.password class="input100" placeholder=form.password.label %}
 						{% if form.password.errors %}
 						<div class="errorfield" >
 							{% for error in form.password.errors %}
