@@ -15,6 +15,11 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGIN_REDIRECT_URL = "news:articlelist"
+
+LOGIN_URL = "login"
+
+LOGOUT_REDIRECT_URL = "login"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -39,8 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    'widget_tweaks',
+
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',
+    'account_app.apps.AccountAppConfig',
 
 ]
 

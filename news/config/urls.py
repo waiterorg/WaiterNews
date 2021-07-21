@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from . import settings
-
+from account_app.views import Login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('news_app.urls'))
+    path('login/', Login.as_view(), name='login' ),
+    path('', include('news_app.urls')),
+    path('account/', include('account_app.urls')),
 ]
 
 if settings.DEBUG:
