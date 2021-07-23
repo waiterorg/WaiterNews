@@ -3,11 +3,15 @@
     color: #c72121;
     background-color: #f9e8ea;
     padding: 10px 20px;
+    text-align: right !important;
+    direction: rtl !important;
 
 }
 
 .errorfield {
     color: #ce1212;
+    text-align: right !important;
+    direction: rtl !important;
 }
 
 .rtl {

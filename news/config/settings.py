@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOGIN_REDIRECT_URL = "news:articlelist"
+LOGIN_REDIRECT_URL = "account:home"
 
 LOGIN_URL = "login"
 
@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'widget_tweaks',
+    'crispy_forms',
 
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',
-    'account_app.apps.AccountAppConfig',
 
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -154,3 +156,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'main_account.User'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

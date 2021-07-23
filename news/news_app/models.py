@@ -2,6 +2,7 @@ from django.db import models
 from main_account.models import User
 from django.utils import timezone
 from django.utils.html import format_html
+from django.urls import reverse
 
 # Create your models here.
 class CategoryManager(models.Manager):
@@ -57,6 +58,7 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True,verbose_name='ساخته شده')
     updated = models.DateTimeField(auto_now=True,verbose_name='بروز رسانی شده')
     status = models.CharField(max_length= 1,choices=STATUS_CHOICES,verbose_name='وضعیت')
+    is_special = models.BooleanField(default=False, verbose_name='مقاله ویژه')
     hits = models.ManyToManyField(IPAddress, through="ArticleHit", blank=True, related_name="hits", verbose_name="بازدید ها")
     objects = ArticleManager()
     class Meta:
@@ -64,11 +66,15 @@ class Article(models.Model):
          verbose_name_plural = 'مقالات'
          ordering = ['-publish']
     
-
+    def __str__(self):
+        return self.title
 
     def category_to_str(self):
         return " ,".join([category.title for category in self.category.get_active_category()])
     category_to_str.short_description='دسته بندی'
+
+    def get_absolute_url(self):
+        return reverse("account:home")
 
     def thumpnail_tag(self):
         return format_html("<img src='{}' width=95 height=75 style='border-radius: 5px;'>".format(self.thumpnail.url))
