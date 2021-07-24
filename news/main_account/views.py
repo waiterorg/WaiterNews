@@ -26,6 +26,10 @@ class Login(LoginView):
         else:
             return reverse_lazy("account:profile")
 
+
+
+
+
 class ArticleList(AuthorsAccessMixin, ListView):
     template_name = "registration/home.html"
 
