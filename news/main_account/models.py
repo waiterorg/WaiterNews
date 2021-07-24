@@ -23,4 +23,22 @@ class User(AbstractUser):
     is_special_user.short_description = 'کاربر ویژه'
     is_special_user.boolean = True
 
+class LogoLoginManager(models.Manager):
+    def get_active_logo(self):
+        return self.get(is_active=True)
+
+
+
+class LogoLogin(models.Model):
+    title = models.CharField(max_length = 150, verbose_name='عنوان')
+    logopic = models.ImageField(upload_to = 'blog-images',verbose_name='تصویر')
+    created = models.DateTimeField(auto_now_add=True,verbose_name='ساخته شده')
+    is_active = models.BooleanField(default=False, verbose_name='فعال / غیر فعال')
+    objects = LogoLoginManager()
+    class Meta:
+         verbose_name = 'عکس صفحه ورود و ثبت نام'
+         verbose_name_plural = 'عکس های صفحه ورود و ثبت نام'
+         ordering = ['-created']
     
+    def __str__(self):
+        return self.title

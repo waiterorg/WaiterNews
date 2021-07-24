@@ -1,5 +1,6 @@
 {% load static %}
 {% load widget_tweaks %}
+{% load base_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,9 +37,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{% static "registration/login/images/img-01.png" %}" alt="IMG">
-				</div>
+				{% logo_picture %}
 
 				<form class="login100-form validate-form" method="POST">{% csrf_token %}
 					<span class="login100-form-title">
