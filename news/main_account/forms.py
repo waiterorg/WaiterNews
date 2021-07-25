@@ -18,7 +18,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name',
-                  'last_name', 'special_user', 'is_author']
+                  'last_name', 'special_user', 'is_author','facebook_link','youtube_link',
+                  'instagram_link','pinterest_link','tweeter_link','website_link']
 
 
 class SignupForm(UserCreationForm):
