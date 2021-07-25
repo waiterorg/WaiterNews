@@ -4,54 +4,26 @@
 
 {% block slide %}
     <div class="masonry-blog clearfix">
-    <div class="first-slot">
-        <div class="masonry-box post-media">
-             <img src="{% static "upload/tech_01.jpg" %}" alt="" class="img-fluid">
-             <div class="shadoweffect">
-                <div class="shadow-desc">
-                    <div class="blog-meta">
-                        <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                        <h4><a href="tech-single.html" title="">Say hello to real handmade office furniture! Clean & beautiful design</a></h4>
-                        <small><a href="tech-single.html" title="">24 July, 2017</a></small>
-                        <small><a href="tech-author.html" title="">by Amanda</a></small>
-                    </div><!-- end meta -->
-                </div><!-- end shadow-desc -->
-            </div><!-- end shadow -->
-        </div><!-- end post-media -->
-    </div><!-- end first-side -->
-
+    {% for article in object_list|slice:":4" %}
     <div class="second-slot">
         <div class="masonry-box post-media">
-             <img src="{% static "upload/tech_02.jpg" %}" alt="" class="img-fluid">
+             <img src="{{ article.thumpnail.url }}" alt="" class="img-fluid size-pic-slide">
              <div class="shadoweffect">
                 <div class="shadow-desc">
                     <div class="blog-meta">
-                        <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span>
-                        <h4><a href="tech-single.html" title="">Do not make mistakes when choosing web hosting</a></h4>
-                        <small><a href="tech-single.html" title="">03 July, 2017</a></small>
-                        <small><a href="tech-author.html" title="">by Jessica</a></small>
+                        {% for category in article.category.get_active_category %}
+                        <span class="bg-orange"><a href="{% url 'news:CategoryView' category.slug %}" title="">{{category.title}}</a></span>
+                        {% endfor %}
+                        <h4><a href="{% url 'news:articledetail' article.slug %}" title="">{{article.title}}</a></h4>
+                        <small>{{article.publish|naturaltime}}</small>
+                        <small><a href="{% url 'news:AuthorView' article.author %}" title="">نویسنده {{article.author.get_full_name}}</a></small>
                     </div><!-- end meta -->
                 </div><!-- end shadow-desc -->
              </div><!-- end shadow -->
         </div><!-- end post-media -->
     </div><!-- end second-side -->
-
-    <div class="last-slot">
-        <div class="masonry-box post-media">
-             <img src="{% static "upload/tech_03.jpg" %}" alt="" class="img-fluid">
-             <div class="shadoweffect">
-                <div class="shadow-desc">
-                    <div class="blog-meta">
-                        <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                        <h4><a href="tech-single.html" title="">The most reliable Galaxy Note 8 images leaked</a></h4>
-                        <small><a href="tech-single.html" title="">01 July, 2017</a></small>
-                        <small><a href="tech-author.html" title="">by Jessica</a></small>
-                    </div><!-- end meta -->
-                </div><!-- end shadow-desc -->
-             </div><!-- end shadow -->
-        </div><!-- end post-media -->
-    </div><!-- end second-side -->
-    </div><!-- end masonry -->
+    {% endfor %}
+    </div>
 {% endblock slide %}
 
 {% block main %}
@@ -62,7 +34,7 @@
                             </div><!-- end blog-top -->
 
                             <div class="blog-list clearfix">
-                                {% for article in object_list %}
+                                {% for article in object_list|slice:"4:" %}
                                     <div class="blog-box row">
                                         <div class="col-md-4">
                                             <div class="post-media">
@@ -80,7 +52,7 @@
                                             <small class="firstsmall"><a class="bg-orange" href="{% url 'news:CategoryView' category.slug %}" title=""> {{category}}</a></small>                                              
                                             {% endfor %}
                                             <small>{{article.publish|naturaltime}}</small>
-                                            <small> نویسنده {{article.author}}</small>
+                                            <small><a href="{% url 'news:AuthorView' article.author %}"> نویسنده </a>{{article.author}}</small>
                                             <small><i class="fa fa-eye"></i>  {{article.hits.count}}</small>
                                         </div><!-- end meta -->
                                     </div><!-- end blog-box -->
