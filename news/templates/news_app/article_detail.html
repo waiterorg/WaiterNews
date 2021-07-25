@@ -35,7 +35,16 @@
 
         <div class="blog-content">  
             <div class="pp">
-                <p>{{ article.description|safe }}</p>
+            {% if object.is_special %}
+                {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
+                    {{article.description|safe}}
+                {% else %}
+                    {{ article.description|striptags|truncatewords:100 }}
+                    <p class="alert alert-warning"> این مقاله ویژه است و باید <a class="alert-link" href="#">اشتراک ویژه</a> خریداری شود !</p>   
+                {% endif %}
+            {% else %}
+                {{article.description|safe}} 
+            {% endif %}
             </div><!-- end pp -->
         </div><!-- end content -->
 
