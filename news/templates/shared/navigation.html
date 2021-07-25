@@ -14,18 +14,18 @@
                         <a class="nav-link" href="#">سلام {{ request.user.get_full_name }} !</a>
                     </li>                   
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account:home' %}">میز کار</a>
+                        <a class="nav-link" href="{% url 'account:home' %}"><i class="fa fa-pen-alt"></i> میز کار</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}"><i class="far fa-sign-in-alt"></i>ورود به سایت</a>
+                        <a class="nav-link" href="{% url 'login' %}"> <i class="fa fa-sign-in"></i>  ورود به سایت   </a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'news:articlelist' %}">خانه</a>
+                        <a class="nav-link" href="{% url 'news:articlelist' %}"><i class="fa fa-home"></i> خانه</a>
                     </li>
                     <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">اخبار</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> اخبار</a>
                         <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
                             <li>
                                 <div class="container">

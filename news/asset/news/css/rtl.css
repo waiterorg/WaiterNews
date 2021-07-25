@@ -1,6 +1,18 @@
+@font-face {
+    font-family: BMitra;
+    src: url('BMitra.eot');
+    src: url('BMitra.eot?#iefix') format('embedded-opentype'),
+         url('BMitra.woff2') format('woff2'),
+         url('BMitra.woff') format('woff'),
+         url('BMitra.ttf') format('truetype');
+    font-weight: normal;
+  }
+  
+
 body{
     direction: rtl;
     text-align: right;
+    font-family: BMitra !important;
 }
 ul.navbar-nav.mr-auto{
     margin-right: initial !important;
@@ -35,4 +47,58 @@ div.tab {
 .logo-pic{
     height: 50px;
     width: 50px;
+}
+
+.navbar-inverse .navbar-nav .nav-link, .navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, body, .navbar-toggleable-md .navbar-nav .nav-link, .market-header, .btn, .dropdown-item, .form-control, p {
+    font-family: BMitra,'Poppins', serif !important;
+}
+
+button, input, optgroup, select, textarea {
+    font-family: BMitra,sans-serif;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+div.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    border: 0;
+    outline: none;
+    text-align: right;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    color: #121212;
+    font-size: 19px;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    line-height: 1;
+    text-transform: capitalize;
+}
+
+.blog-meta small {
+    font-size: 12px;
+    font-family: Bmitra;
+    display: inline-block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #111111;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
 }
