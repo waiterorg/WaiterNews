@@ -28,7 +28,11 @@ div.tab {
 }
 
 .size-pic-slide{
-    height: 300px;
+    height: 350px;
     width: 22%;
 }
 
+.logo-pic{
+    height: 50px;
+    width: 50px;
+}

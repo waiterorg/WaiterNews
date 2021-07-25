@@ -5,9 +5,10 @@ from main_account.models import LogoLogin
 register = template.Library()
 
 @register.inclusion_tag("shared/navigation.html")
-def category_navbar():
+def category_navbar(request):
     return {
         "categories": Category.objects.get_active_category(),
+        "request": request,
     }
 
 @register.inclusion_tag("registration/logo.html")
