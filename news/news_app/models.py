@@ -3,6 +3,8 @@ from main_account.models import User
 from django.utils import timezone
 from django.utils.html import format_html
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 
 # Create your models here.
 class CategoryManager(models.Manager):
@@ -60,6 +62,7 @@ class Article(models.Model):
     status = models.CharField(max_length= 1,choices=STATUS_CHOICES,verbose_name='وضعیت')
     is_special = models.BooleanField(default=False, verbose_name='مقاله ویژه')
     hits = models.ManyToManyField(IPAddress, through="ArticleHit", blank=True, related_name="hits", verbose_name="بازدید ها")
+    comments = GenericRelation(Comment)
     objects = ArticleManager()
     class Meta:
          verbose_name = 'مقاله'

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'crispy_forms',
+    'comment',
 
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',

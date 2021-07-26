@@ -28,6 +28,7 @@ urlpatterns = [
     path('register/', Register.as_view(), name='register'),
     path('', include('django.contrib.auth.urls')),
     path('', include('news_app.urls')),
+    path('comment/', include('comment.urls')),
     path('account/', include('main_account.urls')),
 ]
 
