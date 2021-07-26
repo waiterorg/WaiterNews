@@ -6,6 +6,10 @@
         <div class="row">
             <div class="{% block text_area_wrapper_cls %}col-sm-9 col-md-10 px-2 m-2 m-sm-0{% endblock text_area_wrapper_cls %}">
                 {% include 'comment/comments/comment_form.html' with placeholder=placeholder %}
+                <button disabled class="js-comment-btn {% block submit_button_cls %}btn{% endblock submit_button_cls %}"
+                        type="submit" name="form_type" value="{% if comment %}child{% else %}parent{% endif %}">
+                    {% if comment %}{% trans "پاسخ" %}{% else %}{% trans "ارسال" %}{% endif %}
+                </button>
             </div>
             <input name="model_name" value="{% get_model_name model_object %}" hidden>
             <input name="model_id" value="{{ model_object.id }}" hidden>
@@ -15,10 +19,6 @@
             <input name="parent_id" value="{{ comment.id }}" type="hidden"/>
             {% endif %}
             <div class="{% block submit_button_wrapper_cls %}col-sm-3 col-md-2 px-2 m-3 m-sm-0{% endblock submit_button_wrapper_cls %}">
-                <button disabled class="js-comment-btn {% block submit_button_cls %}btn btn-outline-success btn-block btn-sm{% endblock submit_button_cls %}"
-                        type="submit" name="form_type" value="{% if comment %}child{% else %}parent{% endif %}">
-                    {% if comment %}{% trans "پاسخ" %}{% else %}{% trans "ارسال" %}{% endif %}
-                </button>
             </div>
         </div>
     </form>
