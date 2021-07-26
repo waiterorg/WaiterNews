@@ -1,5 +1,5 @@
 {% load i18n %}
-<p class="js-comment-content {% block content_text_cls %}mb-0{% endblock content_text_cls %}">
+<p class="js-comment-content {% block content_text_cls %}mb-4 mt-4{% endblock content_text_cls %}">
     {% block comment_urlhash %}
     {% include "comment/comments/urlhash.html" with urlhash=urlhash %}
     {% endblock comment_urlhash %}

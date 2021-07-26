@@ -201,3 +201,20 @@ input#search-input:focus::placeholder {
     text-align: center;
     top: -18px;
 }
+
+.form-control {
+    background: #fff none repeat scroll 0 0 !important;
+    border: 1px dashed #dadada !important;
+    border-radius: 0;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    letter-spacing: 0.3px !important;
+    margin-bottom: 1.4rem !important;
+    min-height: 100px !important;
+    text-transform: none;
+}
+
+.authorbox p a, .pp a, .blog-top .fa-rss, a:hover, a:focus {
+    color: #00a6e5 !important;
+}
