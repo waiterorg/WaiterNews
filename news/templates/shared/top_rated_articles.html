@@ -1,0 +1,12 @@
+{% load humanize %}
+{% for article in top_rated_articles %}
+
+        <a href="{% url 'news:articledetail' article.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="w-100 justify-content-between">
+                <img src="{{article.thumpnail.url}}" alt="popular post" class="img-fluid float-left">
+                <h5 class="mb-1">{{article.title|striptags|truncatewords:15}}</h5>
+                <small>{{article.publish|naturaltime}}</small>
+            </div>
+        </a>                        
+
+{% endfor %}

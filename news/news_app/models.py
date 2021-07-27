@@ -7,6 +7,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
 from datetime import datetime, timedelta
 from django.db.models import Q, Count
+from star_ratings.models import Rating
 
 # Create your models here.
 class CategoryManager(models.Manager):
@@ -45,6 +46,10 @@ class ArticleManager(models.Manager):
         popular_articles = self.get_published_article().annotate(count=Count('hits', filter=Q(articlehit__created__gte=last_month))).order_by('-count', '-publish')[:5]
         return popular_articles
 
+    def get_top_rated_articles(self):
+        last_month = datetime.today() - timedelta(days=30)
+        top_rated = self.filter(created__gte=last_month, ratings__isnull=False).order_by('-ratings__average', '-publish')[:5]
+        return top_rated
 
 class Article(models.Model):
     
@@ -69,6 +74,7 @@ class Article(models.Model):
     is_special = models.BooleanField(default=False, verbose_name='مقاله ویژه')
     hits = models.ManyToManyField(IPAddress, through="ArticleHit", blank=True, related_name="hits", verbose_name="بازدید ها")
     comments = GenericRelation(Comment)
+    ratings = GenericRelation(Rating, related_query_name='ArticleRating')
     objects = ArticleManager()
     class Meta:
          verbose_name = 'مقاله'
