@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import include
 from . import settings
 from main_account.views import Login, Register, activate
@@ -31,6 +31,7 @@ urlpatterns = [
     path('', include('news_app.urls')),
     path('comment/', include('comment.urls')),
     path('account/', include('main_account.urls')),
+    re_path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 
 if settings.DEBUG:
