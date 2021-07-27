@@ -19,13 +19,14 @@ from django.contrib.auth import views
 from django.urls import path
 from django.conf.urls import include
 from . import settings
-from main_account.views import Login, Register
+from main_account.views import Login, Register, activate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login' ),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('register/', Register.as_view(), name='register'),
+    path('activate/<uidb64>/<token>)/', activate, name='activate'),
     path('', include('django.contrib.auth.urls')),
     path('', include('news_app.urls')),
     path('comment/', include('comment.urls')),

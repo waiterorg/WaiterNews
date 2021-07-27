@@ -17,6 +17,12 @@ def logo_picture():
         "logo": LogoLogin.objects.get_active_logo(),
     }
 
+@register.inclusion_tag("shared/trend_video.html")
+def popular_articles():
+    return {
+        "popular_articles": Article.objects.get_popular_articles(),
+    }
+
 @register.inclusion_tag("registration/partials/link.html")
 def link(request, link_name, content, classes):
     return {

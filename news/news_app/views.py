@@ -3,12 +3,16 @@ from .models import Article, Category
 from main_account.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+
+
 # Create your views here.
 
 class ArticleListView(ListView):
     model = Article
     queryset = Article.objects.get_published_article()
     paginate_by = 8
+    
+
 
 class ArticleDetail(DetailView):
 

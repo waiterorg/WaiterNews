@@ -5,6 +5,8 @@ from django.utils.html import format_html
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
+from datetime import datetime, timedelta
+from django.db.models import Q, Count
 
 # Create your models here.
 class CategoryManager(models.Manager):
@@ -37,7 +39,11 @@ class ArticleManager(models.Manager):
     def get_published_article(self):
         published = self.filter(status='p') 
         return published
-
+    
+    def get_popular_articles(self):
+        last_month = datetime.today() - timedelta(days=30)
+        popular_articles = self.get_published_article().annotate(count=Count('hits', filter=Q(articlehit__created__gte=last_month))).order_by('-count', '-publish')[:5]
+        return popular_articles
 
 
 class Article(models.Model):
@@ -82,6 +88,8 @@ class Article(models.Model):
     def thumpnail_tag(self):
         return format_html("<img src='{}' width=95 height=75 style='border-radius: 5px;'>".format(self.thumpnail.url))
     thumpnail_tag.short_description = 'عکس مقاله'
+
+
 
 class ArticleHit(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
