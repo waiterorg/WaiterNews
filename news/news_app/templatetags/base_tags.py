@@ -29,6 +29,13 @@ def top_rated_articles():
         "top_rated_articles": Article.objects.get_top_rated_articles(),
     }
 
+@register.inclusion_tag("shared/hot_article.html")
+def hot_articles():
+    return {
+        "hot_articles": Article.objects.get_hot_articles(),
+    }
+
+
 
 @register.inclusion_tag("registration/partials/link.html")
 def link(request, link_name, content, classes):

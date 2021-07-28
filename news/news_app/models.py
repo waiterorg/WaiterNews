@@ -51,6 +51,12 @@ class ArticleManager(models.Manager):
         top_rated = self.filter(created__gte=last_month, ratings__isnull=False).order_by('-ratings__average', '-publish')[:5]
         return top_rated
 
+    def get_hot_articles(self):
+        last_month = datetime.today() - timedelta(days=30)
+        hot_article = self.get_published_article().annotate(count=Count('comments', filter=Q(comments__posted__gte=last_month) and Q(comments__content_type_id=8))).order_by('-count', '-publish')[:5]
+        return hot_article
+  
+
 class Article(models.Model):
     
     STATUS_CHOICES = (
