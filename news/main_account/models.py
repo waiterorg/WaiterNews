@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from django.templatetags.static import static
 # Create your models here.
 class User(AbstractUser):
     bio = models.TextField(max_length=250,blank=True,null=True,verbose_name='توضیحات')
     email = models.EmailField(unique=True,verbose_name='ایمیل')
+    avatar = models.ImageField(upload_to="avatars", null=True, blank=True)
     facebook_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک فیس بوک')
     youtube_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک یوتیوب')
     instagram_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک اینستاگرام')
@@ -22,6 +24,10 @@ class User(AbstractUser):
             return False
     is_special_user.short_description = 'کاربر ویژه'
     is_special_user.boolean = True
+
+    @property
+    def get_avatar(self):
+        return self.avatar.url if self.avatar else static('registration/adminlte/img/avatar5.png')
 
 class LogoLoginManager(models.Manager):
     def get_active_logo(self):
@@ -42,3 +48,4 @@ class LogoLogin(models.Model):
     
     def __str__(self):
         return self.title
+
