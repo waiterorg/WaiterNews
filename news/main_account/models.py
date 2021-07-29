@@ -4,9 +4,9 @@ from django.utils import timezone
 from django.templatetags.static import static
 # Create your models here.
 class User(AbstractUser):
-    bio = models.TextField(max_length=250,blank=True,null=True,verbose_name='توضیحات')
+    bio = models.TextField(blank=True,null=True,verbose_name='توضیحات')
     email = models.EmailField(unique=True,verbose_name='ایمیل')
-    avatar = models.ImageField(upload_to="avatars", null=True, blank=True)
+    avatar = models.ImageField(upload_to="avatars", null=True, blank=True,verbose_name='عکس پروفایل')
     facebook_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک فیس بوک')
     youtube_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک یوتیوب')
     instagram_link = models.URLField(unique= True,max_length=150,blank=True,null=True,verbose_name='لینک اینستاگرام')
@@ -27,7 +27,7 @@ class User(AbstractUser):
 
     @property
     def get_avatar(self):
-        return self.avatar.url if self.avatar else static('registration/adminlte/img/avatar5.png')
+        return self.avatar.url if self.avatar else static('registration/adminlte/dist/img/avatar5.png')
 
 class LogoLoginManager(models.Manager):
     def get_active_logo(self):
