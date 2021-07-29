@@ -52,7 +52,7 @@
                                             <small class="firstsmall"><a class="bg-orange" href="{% url 'news:CategoryView' category.slug %}" title=""> {{category}}</a></small>                                              
                                             {% endfor %}
                                             <small>{{article.publish|naturaltime}}</small>
-                                            <small><a href="{% url 'news:AuthorView' article.author %}"> نویسنده </a>{{article.author}}</small>
+                                            <small> <a href="{% url 'news:AuthorView' article.author %}">نویسنده {{article.author}}</a></small>
                                             <small><i class="fa fa-eye"></i>  {{article.hits.count}}</small>
                                         </div><!-- end meta -->
                                     </div><!-- end blog-box -->
