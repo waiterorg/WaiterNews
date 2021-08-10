@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item active">{{article.title}}</li>
             </ol>
             {% for category in article.category.get_active_category %}
-            <span class="color-orange"><a href="tech-category-01.html" title="">{{category}}</a></span>                
+            <span class="color-orange"><a href="{% url 'news:CategoryView' category.slug %}" title="">{{category}}</a></span>                
             {% endfor %}
             <h3>{{article.title}}</h3>
 
