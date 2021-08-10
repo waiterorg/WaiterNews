@@ -1,6 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load comment_tags %}
 {% load ratings %}
+{% load social_share %}
 {% block main %}
 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
     <div class="page-wrapper">
@@ -23,9 +24,8 @@
 
             <div class="post-sharing">
                 <ul class="list-inline">
-                    <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
-                    <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
-                    <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                    <li>{% post_to_facebook object_or_url %}</li>
+                    <li>{% post_to_twitter object_or_url %}</li>
                 </ul>
             </div><!-- end post-sharing -->
         </div><!-- end title -->
@@ -60,9 +60,8 @@
 
             <div class="post-sharing">
                 <ul class="list-inline">
-                    <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
-                    <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
-                    <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                    <li>{% post_to_facebook object_or_url %}</li>
+                    <li>{% post_to_twitter object_or_url %}</li>
                 </ul>
             </div><!-- end post-sharing -->
         </div><!-- end title -->

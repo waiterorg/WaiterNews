@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'comment',
     'star_ratings',
+    'django_social_share',
 
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',
