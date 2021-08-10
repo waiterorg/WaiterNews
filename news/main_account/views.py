@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from news_app.models import Article
-from .forms import SignupForm
+from .forms import SignupForm, ContactForm
 from .models import User
 from .forms import ProfileForm
 from .mixins import (FieldsMixin,
@@ -20,7 +20,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage,send_mail, BadHeaderError
 from django.http import HttpResponse
 # Create your views here.
 
@@ -116,3 +116,23 @@ def activate(request, uidb64, token):
         return HttpResponse('اکانت شما با موفقیت فعال شد برای ورود کلیک کنید <a href="/login">ورود </a>')
     else:
         return HttpResponse('این لینک منقضی شده است  <a href="/registration>دوباره امتحان کنید</a>')
+
+
+def contactView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('account:successemail')
+    return render(request, "news_app/contact-us.html", {'form': form})
+
+def SuccessView(request):
+    return HttpResponse('پیام شما با موفقیت ارسال شد ! <a href="/">خانه </a>')

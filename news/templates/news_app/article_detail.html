@@ -54,7 +54,7 @@
             <div class="tag-cloud-single">
                 <span>Tags</span>
                 {% for category in article.category.get_active_category %}
-                <small><a href="#" title="">{{category}}</a></small>
+                <small><a href="{% url 'news:CategoryView' category.slug %}" title="">{{category}}</a></small>
                 {% endfor %}
             </div><!-- end meta -->
 
@@ -117,3 +117,7 @@
     </div><!-- end page-wrapper -->
 </div>
 {% endblock main %}
+
+{% block trend_video %}
+    {% include 'shared/trend_video.html' %}  
+{% endblock trend_video %}
