@@ -26,12 +26,27 @@ LOGOUT_REDIRECT_URL = "login"
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD:app/config/settings.py
 SECRET_KEY = os.environ.get("SECRET_KEY")
+=======
+SECRET_KEY = os.environ.get('SECRET_KEY')
+>>>>>>> 1cd6182 (Dockerize django):news/config/settings.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
+<<<<<<< HEAD:app/config/settings.py
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+=======
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
+
+>>>>>>> 1cd6182 (Dockerize django):news/config/settings.py
 
 
 # Application definition
@@ -94,6 +109,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+<<<<<<< HEAD:app/config/settings.py
     "default": {
         "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
         "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
@@ -101,6 +117,15 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORT", "5432"),
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+
+>>>>>>> 1cd6182 (Dockerize django):news/config/settings.py
     }
 }
 
@@ -163,11 +188,20 @@ AUTH_USER_MODEL = 'main_account.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+<<<<<<< HEAD:app/config/settings.py
 EMAIL_HOST = 'jkj'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 456
 EMAIL_HOST_USER = 'kj'
 EMAIL_HOST_PASSWORD = 'ojj'
+=======
+# EMAIL_HOST = os.environ.get('EMAIL_HOST')
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = os.environ.get('EMAIL_PORT')
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+>>>>>>> 1cd6182 (Dockerize django):news/config/settings.py
 
 STAR_RATINGS_RERATE = False
 STAR_RATINGS_STAR_HEIGHT = 20
