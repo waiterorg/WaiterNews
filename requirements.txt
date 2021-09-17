@@ -8,13 +8,10 @@ django-social-share==2.2.1
 django-star-ratings==0.9.1
 django-widget-tweaks==1.4.8
 Pillow==8.3.1
-<<<<<<< HEAD:app/requirements.txt
-psycopg2-binary==2.9.1
-=======
 psycopg2>=2.8.6,<2.9
->>>>>>> 1cd6182 (Dockerize django):requirements.txt
 python-decouple==3.4
 pytz==2021.1
 six==1.16.0
 sqlparse==0.4.1
 swapper==1.1.2.post1
+uWSGI>=2.0.19.1,<2.1
