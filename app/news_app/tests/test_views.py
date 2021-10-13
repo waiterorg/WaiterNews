@@ -7,7 +7,8 @@ from ..models import Category, Article
 from ..views import ArticleListView
 
 class TestViewResponse(TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpTestData(self):
         self.c = Client()
         self.factory = RequestFactory()
         user = User.objects.create(username='admin',password='helloo',email='test@ex.to')
@@ -39,6 +40,15 @@ class TestViewResponse(TestCase):
         response = self.c.get(
             reverse('news:CategoryView', args=['django']))
         self.assertEqual(response.status_code, 200)
+
+    def test_category_list_url(self):
+        """
+        Test articles for each author response status
+        """
+        response = self.c.get(
+            reverse('news:AuthorView', args=['admin']))
+        self.assertEqual(response.status_code, 200)
+
 
     def test_homepage_html(self):
         """
