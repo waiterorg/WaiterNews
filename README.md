@@ -22,20 +22,20 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 - A user can make profile with image and bio.
 
 ## Features
-- articles or news('مقالات و اخبار')
+- articles or news ('مقالات و اخبار')
   - articles or news from normal users gets sent to admin page.  
   - articles or news must be publish by admin.
   - if articles or news have 'چک نویس' status, wont be sent in admin page.
   - only special users can see special articles.
   
-- category('دسته بندی')
+- category ('دسته بندی')
   - articles or news ordered by category
   - can click on category name and only see articles and news for those category
   
-- hot articles & news('مقالات داغ ماه')
+- hot articles & news ('مقالات داغ ماه')
   - hot articles is most comment on post per month which ordered in left side on page 'مقالات داغ ماه'.
   
-- most view articles & news('پر بازدید ماه')
+- most view articles & news ('پر بازدید ماه')
   - hot articles is most view on post per month which ordered in left side on page 'پر بازدید ماه'.
   
 
