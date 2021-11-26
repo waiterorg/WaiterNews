@@ -48,3 +48,4 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 
 ## What the app looks like
 ![ScreenShot](screenshot/ScreenshotHome.png)
+![ScreenShot](screenshot/ScreenshotPanel.png)
