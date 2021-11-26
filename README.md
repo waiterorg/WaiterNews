@@ -47,4 +47,4 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 - Django Packages
 
 ## What the app looks like
-![alt text](https://github.com/waiterorg/WaiterNews/tree/main/screenshot/ScreenshotHome.png)
+![alt text](https://github.com/waiterorg/WaiterNews/tree/main/screenshot/ScreenshotHome.png?raw=true)
