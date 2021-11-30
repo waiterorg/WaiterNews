@@ -46,6 +46,7 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 - PostgreSQL
 - DRF
 - Django Packages
+- Docker
 
 ## What the app looks like
 ![ScreenShot](screenshot/ScreenshotHome.png)
