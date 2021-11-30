@@ -3,9 +3,10 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 
 ##  How to run the app
 1. Either fork or download the app and open the folder in the cli
-2. Install all dependencies using the `pip install requirements.txt` command (recomended : use virtualenv)
-3. Start the web server using the `python manage.py runserver` command. The app will be served at http://localhost:8000/ 
-4. Go to http://localhost:8000/ in your browser and tweet something
+2. Make sure you have the Docker app running on your computer, you can download docker from [here](https://www.docker.com/products/docker-desktop)
+3. Build the Docker Image by running `docker-compose -f docker-compose-deploy.yml build`
+4. run this command to start the multicontainer application `docker-compose -f docker-compose-deploy.yml up`
+5. Go to http://localhost:80/ in your browser and post something
 
 
 
