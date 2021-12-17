@@ -4,9 +4,10 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 ##  How to run the app
 1. Either fork or download the app and open the folder in the cli
 2. Make sure you have the Docker app running on your computer, you can download docker from [here](https://www.docker.com/products/docker-desktop)
-3. Build the Docker Image by running `docker-compose -f docker-compose-deploy.yml build`
-4. run this command to start the multicontainer application `docker-compose -f docker-compose-deploy.yml up`
-5. Go to http://localhost:80/ in your browser and post something
+3. side of .env.sample which is exist, make a .env file like it sample and give them required variable
+4. Build the Docker Image by running `docker-compose -f docker-compose-deploy.yml build`
+5. run this command to start the multicontainer application `docker-compose -f docker-compose-deploy.yml up`
+6. Go to http://localhost:80/ in your browser and post something
 
 
 
