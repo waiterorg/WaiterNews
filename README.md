@@ -7,7 +7,7 @@ WaiterNews is a news and blog application where users can post their thoughts, a
 3. side of .env.sample which is exist, make a .env file like it sample and give them required variable
 4. Build the Docker Image by running `docker-compose -f docker-compose-deploy.yml build`
 5. run this command to start the multicontainer application `docker-compose -f docker-compose-deploy.yml up`
-6. Go to http://localhost:80/ in your browser and post something
+6. Go to http://localhost:80/ in your browser and post something <br>
 NB : if you had an error like `standard_init_linux.go:175: exec user process caused "no such file or directory"`
 change those run.sh end of line sequence from CRLF to LF, for more information click [here](https://github.com/riggraz/astuto/issues/9)
 
