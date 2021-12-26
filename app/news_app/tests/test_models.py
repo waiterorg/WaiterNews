@@ -11,14 +11,14 @@ class CategoryModelTest(TestCase):
 
     def test_title_label(self):
         """
-        test title vernose name
+        test title verbose name
         """
         field_label = self.category._meta.get_field('title').verbose_name
         self.assertEqual(field_label, 'عنوان دسته بندی')
     
     def test_slug_label(self):
         """
-         test slug vernose name 
+         test slug verbose name 
         """
         field_label = self.category._meta.get_field('slug').verbose_name
         self.assertEqual(field_label, 'ادرس دسته بندی')
