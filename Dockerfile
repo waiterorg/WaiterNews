@@ -10,15 +10,19 @@ COPY ./scripts /scripts
 WORKDIR /app
 EXPOSE 8000
 
+# Segmentation RUN for easy cache for each step while build
+
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-deps \
-        build-base postgresql-dev musl-dev linux-headers && \
-    apk add --update --no-cache tiff-dev jpeg-dev openjpeg-dev zlib-dev freetype-dev lcms2-dev \
+        build-base postgresql-dev musl-dev linux-headers
+
+RUN apk add --update --no-cache tiff-dev jpeg-dev openjpeg-dev zlib-dev freetype-dev lcms2-dev \
     libwebp-dev tcl-dev tk-dev harfbuzz-dev fribidi-dev libimagequant-dev \
-    libxcb-dev libpng-dev && \
-    /py/bin/pip install -r /requirements.txt && \
+    libxcb-dev libpng-dev
+    
+RUN /py/bin/pip install -r /requirements.txt && \
     apk del .tmp-deps && \
     adduser --disabled-password --no-create-home app && \
     mkdir -p /vol/web/static && \
