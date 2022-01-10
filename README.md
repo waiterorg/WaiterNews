@@ -1,5 +1,5 @@
 # WaiterNews
-WaiterNews is a news and blog application where users can post their thoughts, articles and news.
+WaiterNews is a news and blog application where users can post their thoughts, articles and news.<br>
 The language in this web app is persian.
 
 ##  How to run the app
