@@ -1,6 +1,13 @@
 # WaiterNews
 WaiterNews is a news and blog application where users can post their thoughts, articles and news.<br>
 The language in this web app is persian.
+- [Setup & Run](#How-to-run-the-app)
+- [How post an article or news](#How-post-an-article-or-news)
+- [User Stories](#User-Stories)
+- [Features](#Features)
+- [Dependencies](#Dependencies)
+- [What the app looks like](#What-the-app-looks-like)
+
 
 ##  How to run the app
 1. Either fork or download the app and open the folder in the cli.
