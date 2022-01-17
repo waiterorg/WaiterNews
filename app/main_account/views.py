@@ -35,7 +35,6 @@ class Login(LoginView):
             return reverse_lazy("account:profile")
 
 
-#
 
 
 class ArticleList(AuthorsAccessMixin, ListView):
