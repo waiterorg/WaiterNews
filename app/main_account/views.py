@@ -22,6 +22,7 @@ from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage,send_mail, BadHeaderError
 from django.http import HttpResponse
+from .tasks import send_mail_task
 # Create your views here.
 
 class Login(LoginView):
@@ -128,7 +129,7 @@ def contactView(request):
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             try:
-                send_mail(subject, message, from_email, ['admin@example.com'])
+                send_mail_task.delay(subject, message, from_email)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('account:successemail')
