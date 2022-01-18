@@ -22,8 +22,8 @@ from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage,send_mail, BadHeaderError
 from django.http import HttpResponse
-from .tasks import send_mail_task
-# Create your views here.
+from .tasks import send_mail_task, send_mail_from_webmaster_task
+
 
 class Login(LoginView):
     def get_success_url(self):
@@ -97,10 +97,7 @@ class Register(CreateView):
             'token': account_activation_token.make_token(user),
         })
         to_email = form.cleaned_data.get('email')
-        email = EmailMessage(
-            mail_subject, message, to=[to_email]
-        )
-        email.send()
+        send_mail_from_webmaster_task.delay(mail_subject, message, [to_email])
         return HttpResponse('لینک فعال سازی به ایمیل شما ارسال شد. <a href="/login">ورود </a>')
 
 def activate(request, uidb64, token):
@@ -112,7 +109,6 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # return redirect('home')
         return HttpResponse('اکانت شما با موفقیت فعال شد برای ورود کلیک کنید <a href="/login">ورود </a>')
     else:
         return HttpResponse('این لینک منقضی شده است  <a href="/registration>دوباره امتحان کنید</a>')
@@ -128,7 +124,8 @@ def contactView(request):
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
             try:
-                send_mail_task.delay(subject, message, from_email)
+                to_email = ['iwaiterorg@gmail.com']
+                send_mail_task.delay(subject, message, to_email, from_email)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('account:successemail')

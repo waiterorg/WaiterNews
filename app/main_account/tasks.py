@@ -1,17 +1,22 @@
-from celery.utils.log import get_task_logger
 from celery import shared_task
 
-from django.core.mail import send_mail
+from django.core.mail import send_mail , EmailMessage
+from config.settings import EMAIL_HOST_USER
 
 
 @shared_task(bind=True)
-def send_mail_task(self,subject, message, from_email):
-    from_email = from_email
+def send_mail_task(self,subject, message, to_email, from_email = EMAIL_HOST_USER):
     send_mail(
         subject = subject,
         message=message,
         from_email=from_email,
-        recipient_list=['iwaiterorg@gmail.com'],
+        recipient_list=to_email,
         fail_silently=False,
     )
+    return 'Done'
+
+@shared_task(bind=True)
+def send_mail_from_webmaster_task(self,subject, message, to_email):
+    email = EmailMessage(subject, message, to=to_email)
+    email.send()
     return 'Done'
