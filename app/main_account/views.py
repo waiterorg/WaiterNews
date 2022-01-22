@@ -109,6 +109,14 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
+        current_site = get_current_site(request)
+        mail_subject = 'به جمع ما خوش اومدی !'
+        message = render_to_string('registration/welcome_account.html', {
+            'user': user,
+            'domain': current_site.domain,
+        })
+        to_email = user.email
+        send_mail_from_webmaster_task.delay(mail_subject, message, [to_email])
         return HttpResponse('اکانت شما با موفقیت فعال شد برای ورود کلیک کنید <a href="/login">ورود </a>')
     else:
         return HttpResponse('این لینک منقضی شده است  <a href="/registration>دوباره امتحان کنید</a>')

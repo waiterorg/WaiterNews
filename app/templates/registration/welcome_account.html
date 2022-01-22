@@ -1,0 +1,4 @@
+{% autoescape off %}
+خوش اومدی {{ user.username }}،
+امیدوارم تجربه جدید و خوبی رو در کنار هم داشته باشیم برای ورود به میز کارت رو لینک بزن  : http://{{ domain }}{% url 'account:profile' %}
+{% endautoescape %}
