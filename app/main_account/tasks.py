@@ -5,7 +5,7 @@ from config.settings import EMAIL_HOST_USER
 
 
 @shared_task(bind=True)
-def send_mail_task(self,subject, message, to_email, from_email = EMAIL_HOST_USER):
+def send_mail_task(request,subject, message, to_email, from_email = EMAIL_HOST_USER):
     send_mail(
         subject = subject,
         message=message,
@@ -16,7 +16,7 @@ def send_mail_task(self,subject, message, to_email, from_email = EMAIL_HOST_USER
     return 'Done'
 
 @shared_task(bind=True)
-def send_mail_from_webmaster_task(self,subject, message, to_email):
+def send_mail_from_webmaster_task(request,subject, message, to_email):
     email = EmailMessage(subject, message, to=to_email)
     email.send()
     return 'Done'
