@@ -1,11 +1,17 @@
-from django.shortcuts import get_object_or_404, render
-from .models import Article, Category
-from main_account.models import User
+import json
+from datetime import timedelta, datetime
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+from django_celery_beat.models import PeriodicTask, CrontabSchedule
+from celery.schedules import crontab
+from django.utils import timezone
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from main_account.models import User
+from .models import Article, Category
 
-
-# Create your views here.
 
 class ArticleListView(ListView):
     model = Article
@@ -57,3 +63,25 @@ class AuthorList(ListView):
         context = super().get_context_data(**kwargs)
         context['author'] = author
         return context
+
+@login_required
+def mail_weekely_articles(request):
+    last_week = timezone.now() - timedelta(days=7)
+    last_week_articles = Article.objects.filter(publish__gte=last_week, status='p')[:10]
+    subject = 'مقالات جدید این هفته'
+    current_site = get_current_site(request)
+    message = render_to_string('registration/weekely_articles_email.html', {
+            'articles': last_week_articles,
+            'user': request.user,
+            'domain': current_site.domain,
+        })
+    current_time = datetime.now()
+    # for diffrence number of days of week between  crontab and datetime , give 1 day to current time to eqauls with crontab days of week number
+    # for example in datetime sunday is 6 but in crontab sunday is 0 so in datetime 6 + 1 = 0 for weekday
+    exchange_number_day_of_week = current_time + timedelta(days=1)
+    current_day_of_week = exchange_number_day_of_week.weekday()
+    schedule, created = CrontabSchedule.objects.get_or_create(hour = current_time.hour, minute = current_time.minute, day_of_week = current_day_of_week)
+    task = PeriodicTask.objects.create(crontab=schedule, name=f"weekely_mail_task_{request.user.pk}", 
+                                       task='main_account.tasks.send_mail_from_webmaster_task', 
+                                       args = json.dumps([subject, message, [request.user.email]]))
+    return redirect('/')

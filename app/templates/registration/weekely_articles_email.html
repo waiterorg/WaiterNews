@@ -1,0 +1,7 @@
+{% autoescape off %}
+سلام {{ user.username }}،
+مقالات جدید این هفته رو وقت کردی بخون خیلی اتفاقا افتاده :)
+{% for article in articles %}
+{{ article.title }} : {{ domain }}{% url 'news:articledetail' article.slug %}
+{% endfor %}
+{% endautoescape %}
