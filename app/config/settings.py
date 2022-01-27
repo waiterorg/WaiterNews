@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'star_ratings',
     'django_social_share',
     'django_celery_beat',
+    'django_celery_results',
 
     'main_account.apps.MainAccountConfig',
     'news_app.apps.NewsAppConfig',
@@ -179,8 +180,8 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Tehran'
+CELERY_RESULT_BACKEND = 'django-db'
 CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
-
 
 STAR_RATINGS_RERATE = False
 STAR_RATINGS_STAR_HEIGHT = 20
