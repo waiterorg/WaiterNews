@@ -56,6 +56,7 @@ change those run.sh end of line sequence from CRLF to LF, for more information c
 - DRF
 - Django Packages
 - Celery
+- Redis
 - Docker
 
 ## What the app looks like
