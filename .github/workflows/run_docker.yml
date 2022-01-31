@@ -1,0 +1,21 @@
+name: WaiterNews Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker compose
+      run: docker-compose -f docker-compose-deploy.yml build
+    - name: Run Docker compose
+      run: docker-compose -f docker-compose-deploy.yml up
+    
